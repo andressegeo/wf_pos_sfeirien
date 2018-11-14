@@ -1,13 +1,13 @@
 # Workflow positionement sfeirien
 
 ## General
-- Cdp: Duhamel Stuf, Andresse Njeungoue
-- affectés: Andresse Njeungoue, 
+- Cdp: Grégory Lecygne
+- affected: Andresse Njeungoue, 
 - Dev: Andresse Njeungoue
 - Specs: https://docs.google.com/document/d/1fp5Jyums9M2-WTMDTkeVRtREHPpQKQMbFGJ7K6RLbCA/edit?ts=5beaecd5
 
 ## GCP
-- project: 
+- project: workflow positionement sfeirien
 - scope: intern
 
 # Qu'est ce que c'est (technos)
