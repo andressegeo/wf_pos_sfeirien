@@ -1,8 +1,9 @@
 #coding: utf8
 from flask import abort
-from google.appengine.api import users
 import logging
 from . import connect_db
+from google.appengine.api import users, mail, app_identity
+from datetime import datetime
 
 def get_all_process():
     user = users.get_current_user()
@@ -23,6 +24,41 @@ def get_all_process():
                         u"status": row[6]
                     })
         con.commit()
+        return items
     except BaseException as e:
         logging.error(u'Error: {}'.format(unicode(e).encode(u'utf-8')))
-    return items 
+    
+
+
+def update_process(id_process, new_status):
+    try:
+        #items = {}
+        cursor, con = connect_db.connect()
+        query = "UPDATE process SET status = "+ str(new_status) + " WHERE id = " +str(id_process) +""
+        print query
+        cursor.execute(query)
+        con.commit()
+        return 1
+    except BaseException as e:
+        logging.error(u'Error: {}'.format(unicode(e).encode(u'utf-8')))
+        return 0
+    
+
+def send(recipient, sender, subject, body):
+    isHTML=True
+    print("recep: "+recipient)
+    logging.debug(u'Sending mail {} to {}'.format(subject, unicode(recipient)).encode(u'utf-8'))
+
+    message = mail.EmailMessage(
+        sender=sender,
+        subject=subject,
+        to=recipient
+    )
+
+    if isHTML:
+        message.html = body
+    else:
+        message.body = body
+
+    message.check_initialized()
+    message.send()

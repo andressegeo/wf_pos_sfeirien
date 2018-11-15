@@ -29,18 +29,19 @@ then
     fi
 
     cp -r lib/ build/lib
-    cp app.yaml build/app.yaml
+    cp api.yaml build/api.yaml
     cp main.py build/main.py
     cd build
 
     if [ $ENV != "production" ]
     then
-      sed -i -e "s/service: default/service: default-$ENV/g" app.yaml
+      sed -i -e "s/service: default/service: default-$ENV/g" api.yaml
     fi
 
     sanitized_version=$(echo $2 | tr . -)
     echo $sanitized_version
-    gcloud app deploy app.yaml --version=${sanitized_version} --project=$PROJECT --no-promote
+    gcloud app deploy api.yaml --version=${sanitized_version} --project=wf-pos-sfeirien 
+    #gcloud app deploy api.yaml --version=${sanitized_version} --project=$PROJECT --no-promote
 
 else
     echo "Wrong environment. (dev | production | acceptance)."
