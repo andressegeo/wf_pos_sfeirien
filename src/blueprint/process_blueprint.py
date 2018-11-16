@@ -44,7 +44,7 @@ def update_process():
                     if check == 1:
                         print "edit sucess"
                         process_db.send(recipient, sender,  subject, body)
-                        return flask_construct_response({"response":"mail send"}, 200)
+                        return jsonify({"response":"mail send"})
                     else:
                         print "edit failed"
                         return flask_constructor_error(u"Failled to update db", 404, 404)

@@ -6,8 +6,8 @@ from google.appengine.api import users, mail, app_identity
 from datetime import datetime
 
 def get_all_process():
-    user = users.get_current_user()
-    print user
+    #user = users.get_current_user()
+    #print user
     try:
         items = []
         cursor, con = connect_db.connect()

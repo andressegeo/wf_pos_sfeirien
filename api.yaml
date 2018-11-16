@@ -7,7 +7,7 @@ default_expiration: "10m"
 handlers:
 - url: /.*
   script: main.APP
-  login: required
+  #login: required
   secure: always
 
 libraries:
